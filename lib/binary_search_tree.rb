@@ -37,4 +37,43 @@ class BinarySearchTree
     return current_node.score == key
   end
 
+  def depth_of(score)
+    searched_node = Node.new(score, "")
+    current_node = self.start_node
+    depth_node = 0
+    if self.include?(score)
+      until current_node.score == score
+        current_node = searched_node.next_node(current_node)
+        depth_node += 1
+      end
+      return depth_node
+    else
+      nil
+    end
+  end
+
+  def max
+    current_node = self.start_node
+    if current_node != nil
+      until current_node.right_node == nil
+        current_node = current_node.right_node
+      end
+      return {current_node.title => current_node.score}
+    else
+      return nil
+    end
+  end
+
+  def min
+    current_node = self.start_node
+    if current_node != nil
+      until current_node.left_node == nil
+        current_node = current_node.left_node
+      end
+      return {current_node.title => current_node.score}
+    else
+      return nil
+    end
+  end
+
 end
